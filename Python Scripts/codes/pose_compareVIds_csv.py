@@ -106,8 +106,7 @@ def calculate_metrics(landmarks):
     landmark_triplets = [
         (11, 13, 15), (12, 14, 16),
         (13, 11, 23), (11, 23, 25), (23, 25, 27),
-        (14, 12, 24), (12, 24, 26), (24, 26, 28),
-        (11, 12, 24), (12, 11, 23)
+        (14, 12, 24), (12, 24, 26), (24, 26, 28)
     ]
 
     relative_angles = []
@@ -123,8 +122,6 @@ def compare_values(current_values, ref_values):
         return None  # if there are no reference values at all.
     comparison_result = []
     for i in range(len(current_values)):
-        if ref_values[i] == 181:
-            continue
         difference = abs(current_values[i] - ref_values[i])
         comparison_result.append(difference)
     if len(comparison_result) == 0:
@@ -163,19 +160,19 @@ def main():
     comparison_type = 'RelativeAngles'  # 'Gradients' or 'AbsoluteAngles' or 'RelativeAngles' 
     
     # change the input paths here
-    player_codename = "HurryUpFond"
-    ref_codename = "HurryUpPun" 
+    player_codename = "wholeGarden_tabletCUT"
+    ref_codename = "wholeGarden_webcamCUT" 
 
     input_video_path = "Python Scripts/origin_vids/" + player_codename + ".mp4"
     
-    ref_rel_angles_csv_path = "Python Scripts/results/poses/" + ref_codename +"_legacy.csv"
+    ref_rel_angles_csv_path = "Python Scripts/results/poses/" + ref_codename +"_legacy_edit.csv"
 
     
     outdir, inputflnm = input_video_path[:input_video_path.rfind('/')+1], input_video_path[input_video_path.rfind('/')+1:]
     inflnm, inflext = inputflnm.split('.')
 
     # change the output path here
-    output_video_path = "results/videos" + f"/{inflnm}_annotated_C2"+ f"_with{comparison_type}Scoring" + ".mp4"
+    output_video_path = "Python Scripts/results/videos" + f"/{inflnm}_annotated_C2"+ f"_with{comparison_type}Scoring_edit" + ".mp4"
 
     pose = initialize_pose()
     ref_relative_angles_data = read_ref_poses_csv(ref_rel_angles_csv_path)

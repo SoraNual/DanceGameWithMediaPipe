@@ -100,8 +100,7 @@ def calculate_metrics(landmarks):
     landmark_triplets = [
         (11, 13, 15), (12, 14, 16),
         (13, 11, 23), (11, 23, 25), (23, 25, 27),
-        (14, 12, 24), (12, 24, 26), (24, 26, 28),
-        (11, 12, 24), (12, 11, 23)
+        (14, 12, 24), (12, 24, 26), (24, 26, 28)
     ]
 
     relative_angles = []
@@ -114,14 +113,14 @@ def calculate_metrics(landmarks):
 
 def main():
     # change the input path here ("file path" + "video name")
-    input_vid_name = "HurryUpPun"
+    input_vid_name = "wholeGarden_webcamCUT"
     input_vid_path = "Python Scripts/origin_vids/" + input_vid_name + ".mp4"
     
     # change the output file paths here
     # c = model complexity
     output_video_path = f"Python Scripts/results/videos/{input_vid_name}_"     + "annotated.mp4"
     # r = relative angle
-    output_r_csv_path = f"Python Scripts/results/poses/{input_vid_name}_"      + "legacy.csv"
+    output_r_csv_path = f"Python Scripts/results/poses/{input_vid_name}_"      + "legacy_edit.csv"
 
     pose = initialize_pose()
     vid = cv2.VideoCapture(input_vid_path)

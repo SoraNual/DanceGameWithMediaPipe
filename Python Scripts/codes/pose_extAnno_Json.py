@@ -75,8 +75,7 @@ def calculate_metrics(landmarks):
     landmark_triplets = [
         (11, 13, 15), (12, 14, 16),
         (13, 11, 23), (11, 23, 25), (23, 25, 27),
-        (14, 12, 24), (12, 24, 26), (24, 26, 28),
-        (11, 12, 24), (12, 11, 23)
+        (14, 12, 24), (12, 24, 26), (24, 26, 28)
     ]
 
     relative_angles = []
@@ -107,7 +106,7 @@ def main():
     # c = model complexity
     output_video_path = f"Python Scripts/results/videos/{input_vid_name}_" + "legacy.mp4"
     # r = relative angle
-    output_json_path = f"Python Scripts/results/poses/{input_vid_name}_" + "legacy.json"
+    output_json_path = f"Python Scripts/results/poses/{input_vid_name}_" + "legacy_edit.json"
 
     pose = initialize_pose()
     vid = cv2.VideoCapture(input_vid_path)
