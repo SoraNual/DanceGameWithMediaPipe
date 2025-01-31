@@ -57,8 +57,7 @@ def calculate_relative_angles(landmarks):
     landmark_triplets = [
         (11, 13, 15), (12, 14, 16),
         (13, 11, 23), (11, 23, 25), (23, 25, 27),
-        (14, 12, 24), (12, 24, 26), (24, 26, 28),
-        (11, 12, 24), (12, 11, 23)
+        (14, 12, 24), (12, 24, 26), (24, 26, 28)    
     ]
 
     relative_angles = []
@@ -114,8 +113,8 @@ async def process_frame(websocket, path):
                         cv2.imwrite(filename, frame)
                         """
 
-                        arr_of_rel_angles = calculate_relative_angles(results.pose_landmarks.landmark)
-                        print(arr_of_rel_angles)
+                        current_player_pose = calculate_relative_angles(results.pose_landmarks.landmark)
+                        print(current_player_pose)
                         json_data = {}
                         # json_data["relative_angles"] = {f"R{i}": angle for i, angle in enumerate(arr_of_rel_angles)}
 
@@ -128,11 +127,11 @@ async def process_frame(websocket, path):
                         print(f"attempt to compare ref {frame_number}")
 
                         frame_correctness_list = []
-                        for frame_pose in reference_window:
+                        for reference_pose in reference_window:
                             differences = []
 
-                            for i in range(10):
-                                normalized_difference = min(abs(frame_pose[i] - arr_of_rel_angles[i]) , 1)
+                            for i in range(len(reference_pose)):
+                                normalized_difference = min(abs(reference_pose[i] - current_player_pose[i]) , 1)
                                 differences.append(normalized_difference)
 
                             correctness = max(0, 1 - (sum(differences) / len(differences)))
